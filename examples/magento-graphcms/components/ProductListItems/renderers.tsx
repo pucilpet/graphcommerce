@@ -6,6 +6,8 @@ import { ProductListItemGrouped } from '@graphcommerce/magento-product-grouped'
 import { ProductListItemSimple } from '@graphcommerce/magento-product-simple'
 import { ProductListItemVirtual } from '@graphcommerce/magento-product-virtual'
 import { ProductReviewSummary } from '@graphcommerce/magento-review'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
+
 import { Typography, TypographyProps } from '@material-ui/core'
 import React from 'react'
 
@@ -15,18 +17,19 @@ const Subtitle = (props: TypographyProps) => (
 
 const renderers: ProductListItemRenderer = {
   SimpleProduct: (props) => {
-    const { rating_summary } = props
+    const { sku, rating_summary } = props
     return (
       <ProductListItemSimple
         {...props}
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
+        topRight={<ProductWishlistChip sku={sku} />}
       />
     )
   },
   ConfigurableProduct: (props) => {
-    const { rating_summary } = props
+    const { sku, rating_summary } = props
 
     return (
       <ProductListItemConfigurable
@@ -40,11 +43,12 @@ const renderers: ProductListItemRenderer = {
           bottomRight: ['dominant_color'],
         }}
         bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
+        topRight={<ProductWishlistChip sku={sku} />}
       />
     )
   },
   BundleProduct: (props) => {
-    const { rating_summary } = props
+    const { sku, rating_summary } = props
 
     return (
       <ProductListItemBundle
@@ -52,11 +56,12 @@ const renderers: ProductListItemRenderer = {
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
+        topRight={<ProductWishlistChip sku={sku} />}
       />
     )
   },
   VirtualProduct: (props) => {
-    const { rating_summary } = props
+    const { sku, rating_summary } = props
 
     return (
       <ProductListItemVirtual
@@ -64,11 +69,12 @@ const renderers: ProductListItemRenderer = {
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
+        topRight={<ProductWishlistChip sku={sku} />}
       />
     )
   },
   DownloadableProduct: (props) => {
-    const { rating_summary } = props
+    const { sku, rating_summary } = props
 
     return (
       <ProductListItemDownloadable
@@ -76,11 +82,12 @@ const renderers: ProductListItemRenderer = {
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
+        topRight={<ProductWishlistChip sku={sku} />}
       />
     )
   },
   GroupedProduct: (props) => {
-    const { rating_summary } = props
+    const { sku, rating_summary } = props
 
     return (
       <ProductListItemGrouped
@@ -88,6 +95,7 @@ const renderers: ProductListItemRenderer = {
         subTitle={<Subtitle>BY GC</Subtitle>}
         aspectRatio={[1, 1]}
         bottomLeft={<ProductReviewSummary rating_summary={rating_summary} />}
+        topRight={<ProductWishlistChip sku={sku} />}
       />
     )
   },
