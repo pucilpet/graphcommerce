@@ -30,6 +30,7 @@ import { RowProduct } from '../../../components/Row'
 import RowRenderer from '../../../components/Row/RowRenderer'
 import Usps from '../../../components/Usps'
 import apolloClient from '../../../lib/apolloClient'
+import { ProductWishlistChip } from "@graphcommerce/magento-wishlist";
 
 export const config = { unstable_JsPreload: false }
 
@@ -67,6 +68,7 @@ function ProductGrouped(props: Props) {
 
       <ProductPageMeta {...product} />
       <ProductPageGallery {...product}>
+        <ProductWishlistChip sku={product.sku} />
         <Typography variant='h3' component='div'>
           {product.name}
         </Typography>
