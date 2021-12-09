@@ -9,6 +9,7 @@ import {
   FullPageShellBase,
   FullPageShellBaseProps,
   iconCustomerService,
+  iconHeart,
   MenuFab,
   MenuFabSecondaryItem,
   MenuProps,
@@ -82,6 +83,11 @@ function FullPageShell(props: FullPageShellProps) {
                 <SvgImageSimple src={iconCustomerService} size='large' />
               </Fab>
             </PageLink>
+            <PageLink href='/wishlist' passHref>
+              <Fab aria-label={t`Wishlist`} size='large' color='inherit'>
+                <SvgImageSimple src={iconHeart} size='large' />
+              </Fab>
+            </PageLink>
             <CustomerFab guestHref='/account/signin' authHref='/account' />
             <PlaceholderFab />
           </DesktopNavActions>
@@ -99,6 +105,9 @@ function FullPageShell(props: FullPageShellProps) {
           </CustomerMenuFabItem>
           <MenuFabSecondaryItem icon={<SvgImageSimple src={iconCustomerService} />} href='/service'>
             <Trans>Customer Service</Trans>
+          </MenuFabSecondaryItem>
+          <MenuFabSecondaryItem icon={<SvgImageSimple src={iconHeart} />} href='/wishlist'>
+            <Trans>Wishlist</Trans>
           </MenuFabSecondaryItem>
         </MenuFab>
       }
