@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import ThemedProvider from '../components/Theme/ThemedProvider'
 import apolloClient from '../lib/apolloClientBrowser'
+import { CustomerProvider } from '@graphcommerce/magento-customer'
 
 export default function ThemedApp(props: AppProps) {
   const { pageProps } = props
@@ -17,7 +18,9 @@ export default function ThemedApp(props: AppProps) {
       <ApolloProvider client={apolloClient(locale, true, pageProps.apolloState)}>
         <LinguiProvider loader={(locale) => import(`../locales/${locale}.po`)}>
           <ThemedProvider>
-            <App {...props} />
+            <CustomerProvider>
+              <App {...props} />
+            </CustomerProvider>
           </ThemedProvider>
         </LinguiProvider>
       </ApolloProvider>
