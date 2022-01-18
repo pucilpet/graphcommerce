@@ -8,11 +8,13 @@ import { Container, NoSsr } from '@material-ui/core'
 import React from 'react'
 import SheetShell, { SheetShellProps } from '../../components/AppShell/SheetShell'
 import apolloClient from '../../lib/apolloClient'
+import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 
 type GetPageStaticProps = GetStaticProps<SheetShellProps>
 
 function AccountSignInPage() {
   useMergeCustomerCart()
+  useMergeGuestWishlistWithCustomer()
 
   return (
     <>
