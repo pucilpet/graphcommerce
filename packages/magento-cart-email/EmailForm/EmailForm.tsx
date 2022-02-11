@@ -19,6 +19,7 @@ import React, { useEffect, useState } from 'react'
 import EmailHelperList from '../EmailHelperList'
 import { CartEmailDocument } from './CartEmail.gql'
 import { SetGuestEmailOnCartDocument } from './SetGuestEmailOnCart.gql'
+import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 
 const useStyles = makeStyles(
   () => ({
@@ -41,6 +42,7 @@ export default function EmailForm(props: EmailFormProps) {
   const [expand, setExpand] = useState(false)
 
   useMergeCustomerCart()
+  useMergeGuestWishlistWithCustomer()
 
   const [setGuestEmailOnCart] = useMutation(SetGuestEmailOnCartDocument)
   const { data: cartData } = useCartQuery(CartEmailDocument)
