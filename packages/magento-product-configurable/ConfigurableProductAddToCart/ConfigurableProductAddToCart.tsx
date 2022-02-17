@@ -20,6 +20,7 @@ import {
   ConfigurableProductAddToCartDocument,
   ConfigurableProductAddToCartMutationVariables,
 } from './ConfigurableProductAddToCart.gql'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 type ConfigurableProductAddToCartProps = {
   variables: Omit<ConfigurableProductAddToCartMutationVariables, 'cartId' | 'selectedOptions'>
@@ -36,7 +37,7 @@ const useStyles = makeStyles(
     button: {
       marginTop: theme.spacings.sm,
       marginBottom: theme.spacings.sm,
-      width: '100%',
+      flexGrow: 2,
     },
     finalPrice: {
       marginTop: theme.spacings.sm,
@@ -46,6 +47,12 @@ const useStyles = makeStyles(
     },
     divider: {
       margin: `${theme.spacings.sm} 0`,
+    },
+    buttonWrapper: {
+      margin: `${theme.spacings.sm} 0`,
+      display: 'flex',
+      gap: `${theme.spacings.xs}`,
+      alignItems: 'center',
     },
   }),
   { name: 'ConfigurableProductAddToCart' },
@@ -97,17 +104,20 @@ export default function ConfigurableProductAddToCart(props: ConfigurableProductA
         />
       </Typography>
       {children}
-      <Button
-        type='submit'
-        loading={formState.isSubmitting}
-        color='primary'
-        variant='pill'
-        size='large'
-        classes={{ root: classes.button }}
-        {...buttonProps}
-      >
-        Add to Cart
-      </Button>
+      <div className={classes.buttonWrapper}>
+        <Button
+          type='submit'
+          loading={formState.isSubmitting}
+          color='primary'
+          variant='pill'
+          size='large'
+          classes={{ root: classes.button }}
+          {...buttonProps}
+        >
+          Add to Cart
+        </Button>
+        <ProductWishlistChip sku={variables.sku} variant='medium' />
+      </div>
 
       <ApolloCartErrorAlert error={error} />
 

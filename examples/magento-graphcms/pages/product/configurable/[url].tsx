@@ -32,7 +32,6 @@ import { RowProduct } from '../../../components/Row'
 import RowRenderer from '../../../components/Row/RowRenderer'
 import Usps from '../../../components/Usps'
 import apolloClient from '../../../lib/apolloClient'
-import { ProductWishlistChip } from "@graphcommerce/magento-wishlist";
 
 type Props = ProductPageQuery & ConfigurableProductPageQuery
 
@@ -82,7 +81,6 @@ function ProductConfigurable(props: Props) {
       <ConfigurableContextProvider {...typeProduct} sku={product.sku}>
         <ProductPageMeta {...product} />
         <ProductPageGallery {...product}>
-          <ProductWishlistChip sku={product.sku} />
           <div>
             <Typography component='span' variant='body2' className={classes.prePrice}>
               <Trans>As low as</Trans>&nbsp;

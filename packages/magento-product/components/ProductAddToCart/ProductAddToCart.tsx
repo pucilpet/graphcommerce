@@ -13,12 +13,14 @@ import { Divider, makeStyles, Theme, Typography } from '@material-ui/core'
 import PageLink from 'next/link'
 import React from 'react'
 import { ProductAddToCartDocument, ProductAddToCartMutationVariables } from './ProductAddToCart.gql'
+import { ProductWishlistChip } from '@graphcommerce/magento-wishlist'
 
 const useStyles = makeStyles(
   (theme: Theme) => ({
     button: {
       marginTop: theme.spacings.sm,
-      width: '100%',
+      marginBottom: theme.spacings.sm,
+      flexGrow: 2,
     },
     price: {
       fontWeight: theme.typography.fontWeightBold,
@@ -26,6 +28,12 @@ const useStyles = makeStyles(
     },
     divider: {
       margin: `${theme.spacings.xs} 0`,
+    },
+    buttonWrapper: {
+      margin: `${theme.spacings.sm} 0`,
+      display: 'flex',
+      gap: `${theme.spacings.xs}`,
+      alignItems: 'center',
     },
   }),
   { name: 'AddToCart' },
@@ -70,17 +78,20 @@ export default function ProductAddToCart(
         size='small'
       />
       {children}
-      <Button
-        type='submit'
-        classes={{ root: classes.button }}
-        loading={formState.isSubmitting}
-        color='primary'
-        variant='pill'
-        size='large'
-        {...buttonProps}
-      >
-        Add to Cart
-      </Button>
+      <div className={classes.buttonWrapper}>
+        <Button
+          type='submit'
+          classes={{ root: classes.button }}
+          loading={formState.isSubmitting}
+          color='primary'
+          variant='pill'
+          size='large'
+          {...buttonProps}
+        >
+          Add to Cart
+        </Button>
+        <ProductWishlistChip sku={variables.sku} variant='medium' />
+      </div>
 
       <ApolloCartErrorAlert error={error} />
 
