@@ -19,7 +19,7 @@ function hasInjectableDirective(document: DocumentNode) {
       if (!is && node.name.value === 'injectable') is = true
     },
   })
-  return is && isFragment
+  return is
 }
 
 function hasInjectDirective(document: DocumentNode) {
@@ -29,7 +29,7 @@ function hasInjectDirective(document: DocumentNode) {
       if (!is && node.name.value === 'inject') is = true
     },
   })
-  return is && isFragment
+  return is
 }
 
 type Inject = { into: string[]; fragment: FragmentDefinitionNode }

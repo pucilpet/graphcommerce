@@ -1,0 +1,3 @@
+fragment ConfigFragment on StoreConfig {
+  copyright
+}

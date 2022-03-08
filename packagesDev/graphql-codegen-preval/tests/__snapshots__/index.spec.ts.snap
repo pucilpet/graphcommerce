@@ -1,0 +1,4 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it generates a prevalled query 1`] = `"export const StoreConfig: StoreConfigQuery = {\\"storeConfig\\":{\\"base_url\\":\\"https://backend.reachdigital.dev/\\",\\"absolute_footer\\":null}};"`;
+

@@ -15,8 +15,13 @@ module.exports = {
       schema: [
         'examples/magento-graphcms/.mesh/schema.graphql',
         'packagesDev/graphql-codegen-near-operation-file/src/injectable.graphqls',
+        'packagesDev/graphql-codegen-preval/src/staticDirective.graphqls',
       ],
-      documents: ['examples/magento-graphcms/components/**/*.graphql', 'packages/**/*.graphql'],
+      documents: [
+        'examples/magento-graphcms/components/**/*.graphql',
+        'examples/magento-graphcms/queries/**/*.graphql',
+        'packages/**/*.graphql',
+      ],
       extensions: {
         languageService: {
           useSchemaFileDefinitions: true,

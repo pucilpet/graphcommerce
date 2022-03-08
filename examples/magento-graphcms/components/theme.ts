@@ -12,6 +12,12 @@ import {
 import { createTheme, Theme, alpha } from '@mui/material'
 import { Components, PaletteOptions } from '@mui/material/styles'
 
+declare module '@mui/material/Button/Button' {
+  interface ButtonPropsVariantOverrides {
+    pill2: true
+  }
+}
+
 const lightPalette: PaletteOptions = {
   mode: 'light',
   primary: {

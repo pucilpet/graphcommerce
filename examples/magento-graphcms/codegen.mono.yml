@@ -41,6 +41,7 @@ generates:
       # - '../../packagesDev/**/*.graphql'
     plugins:
       - '@graphcommerce/graphql-codegen-relay-optimizer-plugin'
+      - '@graphcommerce/graphql-codegen-preval'
       - typed-document-node
       - typescript-operations
       - add
@@ -53,3 +54,4 @@ generates:
       skipTypename: true
       dedupeOperationSuffix: true
       content: '/* eslint-disable */'
+      endpoint: ${MAGENTO_ENDPOINT}

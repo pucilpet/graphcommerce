@@ -1,0 +1,9 @@
+type Header {
+  key: String!
+  value: String!
+}
+
+"""
+Preval it!
+"""
+directive @static on QUERY

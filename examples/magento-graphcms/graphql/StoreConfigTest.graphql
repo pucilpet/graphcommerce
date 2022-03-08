@@ -1,0 +1,10 @@
+query StoreConfigTest @static {
+  myStoreConfig: storeConfig {
+    base_url
+    absolute_footer
+    ... on StoreConfig {
+      welcome
+    }
+    ...ConfigFragment
+  }
+}
