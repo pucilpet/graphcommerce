@@ -2,18 +2,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { FetchResult } from '@apollo/client'
 import { oldVisit, PluginFunction, Types } from '@graphql-codegen/plugin-helpers'
-import { LoadedFragment, optimizeOperations } from '@graphql-codegen/visitor-plugin-common'
 import fetch from 'cross-fetch'
-import {
-  ASTNode,
-  visit,
-  BREAK,
-  print,
-  DocumentNode,
-  concatAST,
-  FragmentDefinitionNode,
-  Kind,
-} from 'graphql'
+import { ASTNode, visit, BREAK, print, DocumentNode } from 'graphql'
 import { PrevalVisitor } from './PrevalVisitor'
 
 export type StaticQueryPluginConfig = { endpoint: string }
@@ -51,10 +41,10 @@ export const plugin: PluginFunction<
 > = async (schema, documents, config) => {
   assertConfig(config)
 
-  const appends: string[] = []
+  const append: string[] = []
 
   for await (const documentFile of documents) {
-    const { document } = documentFile
+    const { document, location } = documentFile
     if (!document) break
     if (!isStaticQuery(document)) break
 
@@ -70,11 +60,8 @@ export const plugin: PluginFunction<
     const res = (await req.json()) as FetchResult
 
     if (res.errors) {
-      throw Error(
-        `Error while resolving static query: ${res.errors.map((e) => e.message).join(', ')} (${
-          documentFile.location
-        })`,
-      )
+      const errorString = res.errors.map((e) => e.message).join(', ')
+      throw Error(`Error while resolving static query: ${errorString} (${location})`)
     }
 
     if (res.data) {
@@ -83,14 +70,11 @@ export const plugin: PluginFunction<
 
       const results = visitorResult.definitions.filter((t) => typeof t === 'string')
 
-      appends.push(...results)
+      append.push(...results)
     }
 
     documentFile.document = newDocument
   }
 
-  return {
-    append: appends,
-    content: '',
-  }
+  return { append, content: '' }
 }

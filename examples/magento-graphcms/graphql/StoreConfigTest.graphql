@@ -2,9 +2,13 @@ query StoreConfigTest @static {
   myStoreConfig: storeConfig {
     base_url
     absolute_footer
+    product_reviews_enabled
     ... on StoreConfig {
       welcome
     }
     ...ConfigFragment
+  }
+  availableStores {
+    store_code
   }
 }
